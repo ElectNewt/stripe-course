@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  mysql-flagx0:
+    container_name: mysql-bookplace
+    image: mysql:5.6
+    ports:
+      - 5306:3306
+    environment:
+      - MYSQL_DATABASE=bookplace
+      - MYSQL_ROOT_PASSWORD=pass

@@ -1,0 +1,40 @@
+﻿@model IndexViewModel
+@using CourseStripe.Extensions
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+	@foreach (var book in Model.Products)
+	{
+		<div class="col-md-4">
+			<div class="card mb-4" style="width:100%">
+				<img src="@book.ImageUrl" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">@book.Name</h5>
+
+
+					@if (User.IsPremium())
+					{
+						<span class="btn btn-success download" data-priceid="@book.StripePriceId">Download</span>
+					}
+					else
+					{
+
+						<a href="/checkout/@book.StripePriceId" class="btn btn-primary">comprar (€@book.Price)</a>
+						@if (User.IsAuthenticated())
+						{
+							<span class="btn btn-info addBookToCart" data-priceid="@book.StripePriceId">Add To Cart</span>
+						}
+					}
+
+
+				</div>
+			</div>
+		</div>
+	}
+
+
+</div>
